@@ -208,8 +208,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 80539759}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7009015, y: 0.0033788534, z: 0.0033203906, w: 0.71324235}
-  m_LocalPosition: {x: 0.8030526, y: 2.83, z: -10.319996}
+  m_LocalRotation: {x: 0.61541224, y: 0.000000021288134, z: -0.000000016621273, w: 0.7882055}
+  m_LocalPosition: {x: 0.804, y: 18.83, z: -12.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -425,8 +425,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 542967483}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7009014, y: 0.0033787584, z: 0.0033202965, w: 0.7132425}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0.7009093, y: 0, z: 0, w: 0.7132504}
+  m_LocalPosition: {x: 0, y: 0, z: 1.8999996}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -609,7 +609,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 710397814}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7009014, y: 0.0033787584, z: 0.0033202965, w: 0.7132425}
+  m_LocalRotation: {x: 0.61541224, y: 0.000000021288134, z: -0.000000016621273, w: 0.7882055}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -793,7 +793,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811551772}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.7009014, y: 0.0033787584, z: 0.0033202965, w: 0.7132425}
+  m_LocalRotation: {x: 0.61541224, y: 0.000000021288134, z: -0.000000016621273, w: 0.7882055}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1321,11 +1321,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: -8, z: -0.1}
+  m_BindingMode: 4
+  m_FollowOffset: {x: 0, y: 8, z: -2}
   m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1448,11 +1448,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: -8, z: -0.1}
+  m_BindingMode: 4
+  m_FollowOffset: {x: 0, y: 8, z: -2}
   m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1559,7 +1559,7 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0
+    Value: 1
     m_SpeedMode: 0
     m_MaxSpeed: 2
     m_AccelTime: 0
@@ -1610,14 +1610,14 @@ MonoBehaviour:
     m_RecenteringTime: 2
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
-  m_BindingMode: 5
-  m_SplineCurvature: 0
+  m_BindingMode: 4
+  m_SplineCurvature: 1
   m_Orbits:
   - m_Height: 8
-    m_Radius: 0.1
+    m_Radius: 2
   - m_Height: 0
     m_Radius: 8
-  - m_Height: -8
+  - m_Height: 0
     m_Radius: 0.1
   m_LegacyHeadingBias: 3.4028235e+38
   m_Rigs:
@@ -1633,7 +1633,7 @@ Transform:
   m_GameObject: {fileID: 1735858727}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.8030526, y: 2.83, z: -10.319996}
+  m_LocalPosition: {x: 0.804, y: 18.83, z: -12.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1715,11 +1715,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9384ab8608cdc3d479fe89cd51eed48f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_BindingMode: 5
-  m_FollowOffset: {x: 0, y: -8, z: -0.1}
+  m_BindingMode: 4
+  m_FollowOffset: {x: 0, y: 8, z: -2}
   m_XDamping: 1
-  m_YDamping: 1
-  m_ZDamping: 1
+  m_YDamping: 0
+  m_ZDamping: 0
   m_AngularDampingMode: 0
   m_PitchDamping: 0
   m_YawDamping: 0
@@ -1998,7 +1998,7 @@ MonoBehaviour:
   mainCamera: {fileID: 80539762}
   maxSpeed: 12
   gravityForce: 0.3
-  jumpForce: 8
+  jumpForce: 20
 --- !u!143 &2147465468
 CharacterController:
   m_ObjectHideFlags: 0

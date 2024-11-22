@@ -43,7 +43,7 @@ public class PlayerMovement2 : MonoBehaviour
         Vector3 moveDirection = mainCamera.TransformDirection(inputDirection);
         Vector3 flatMoveDirection = new (moveDirection.x, 0, moveDirection.z);
 
-        velocity = flatMoveDirection * maxSpeed;
+        velocity = flatMoveDirection.normalized * maxSpeed;
         velocity.y = ySpeed;
 
         LimitSpeed();
