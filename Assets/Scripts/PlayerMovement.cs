@@ -43,14 +43,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 flatMoveDirection = new (moveDirection.x, 0, moveDirection.z);
 
         velocity = flatMoveDirection * maxSpeed;
-
         velocity.y = ySpeed;
-
-		var norm = velocity.normalized;
 
         LimitSpeed();
         characterController.Move(velocity * Time.deltaTime);
-		transform.forward = new Vector3(velocity.x, 0f, velocity.z);
+
+		var norm = new Vector3(velocity.normalized.x, 0f, velocity.normalized.z);
+		if (norm.magnitude > 0f) {
+			transform.forward = norm;
+		}
     }
 
     void LimitSpeed()
