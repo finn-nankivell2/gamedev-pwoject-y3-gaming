@@ -16,6 +16,8 @@ public class PlayerMovement : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+		Cursor.lockState = CursorLockMode.Locked;
+		Cursor.visible = false;
         characterController = GetComponent<CharacterController>();
     }
 
@@ -33,8 +35,8 @@ public class PlayerMovement : MonoBehaviour
             ySpeed = jumpForce;
         }
 
-        float horizontalInput = Input.GetAxis("Horizontal");
-        float verticalInput = Input.GetAxis("Vertical");
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
         Vector3 inputDirection = new (horizontalInput, 0, verticalInput);
 
         Vector3 moveDirection = mainCamera.TransformDirection(inputDirection);
@@ -44,8 +46,11 @@ public class PlayerMovement : MonoBehaviour
 
         velocity.y = ySpeed;
 
+		var norm = velocity.normalized;
+
         LimitSpeed();
         characterController.Move(velocity * Time.deltaTime);
+		transform.forward = new Vector3(velocity.x, 0f, velocity.z);
     }
 
     void LimitSpeed()
