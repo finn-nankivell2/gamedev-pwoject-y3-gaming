@@ -6,6 +6,7 @@ public class PlayerMovement2 : MonoBehaviour
 {
     private CharacterController characterController;
     public Transform mainCamera;
+    public Transform orientation;
 
     public float maxSpeed = 12;
     public float gravityForce = 0.3f;
@@ -40,7 +41,11 @@ public class PlayerMovement2 : MonoBehaviour
         float verticalInput = Input.GetAxisRaw("Vertical");
         Vector3 inputDirection = new (horizontalInput, 0, verticalInput);
 
-        Vector3 moveDirection = mainCamera.TransformDirection(inputDirection);
+		Vector3 cameraDirection = mainCamera.forward;
+		cameraDirection.y = 0f;
+
+		orientation.forward = cameraDirection;
+        Vector3 moveDirection = orientation.TransformDirection(inputDirection.normalized);
         Vector3 flatMoveDirection = new (moveDirection.x, 0, moveDirection.z);
 
         velocity = flatMoveDirection.normalized * maxSpeed;
