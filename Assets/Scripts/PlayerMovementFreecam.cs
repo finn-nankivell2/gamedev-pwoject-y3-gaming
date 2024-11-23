@@ -14,6 +14,12 @@ public class PlayerMovement2 : MonoBehaviour
 
     private Vector3 velocity;
     private float ySpeed;
+    private bool jumpStorage = false;
+    
+    public int maxAirJumps = 0;
+    private int airJumps;
+
+    public ParticleSystem airJumpParticles;
 
     // Start is called before the first frame update
     void Start()
@@ -27,14 +33,11 @@ public class PlayerMovement2 : MonoBehaviour
     void Update()
     {
         ySpeed -= gravityForce * Time.deltaTime;
-        if(characterController.isGrounded)
-        {
-            ySpeed = 0;
-        }
+        
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            ySpeed = jumpForce;
+            jumpStorage = true;
         }
 
         float horizontalInput = Input.GetAxisRaw("Horizontal");
@@ -60,12 +63,46 @@ public class PlayerMovement2 : MonoBehaviour
 		}
     }
 
+    void FixedUpdate()
+    {
+        if(characterController.isGrounded)
+        {
+            ySpeed = 0;
+            airJumps = maxAirJumps;
+        }
+
+        if(jumpStorage){
+            if(characterController.isGrounded){
+                Jump();
+            }
+            else{
+                AirJump();
+            }
+            jumpStorage = false;
+        }
+        
+    }
+
     void LimitSpeed()
     {
         Vector3 flatVelocity = new Vector3(velocity.x, 0, velocity.z);
         if(flatVelocity.magnitude > maxSpeed){
             Vector3 limitedFlatVelocity = flatVelocity.normalized * maxSpeed;
             velocity = new (limitedFlatVelocity.x, velocity.y, limitedFlatVelocity.z);
+        }
+    }
+
+    void Jump()
+    {
+        ySpeed = jumpForce;
+    }
+
+    void AirJump()
+    {
+        if(airJumps > 0){
+            ySpeed = jumpForce;
+            airJumps -= 1;
+            airJumpParticles.Play();
         }
     }
 }
