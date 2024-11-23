@@ -105,4 +105,9 @@ public class PlayerMovement2 : MonoBehaviour
             airJumpParticles.Play();
         }
     }
+
+    public void AddJump()
+    {
+        maxAirJumps += 1;
+    }
 }
