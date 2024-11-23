@@ -26,13 +26,13 @@ public class PlayerMovement2 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ySpeed -= gravityForce;
+        ySpeed -= gravityForce * Time.deltaTime;
         if(characterController.isGrounded)
         {
             ySpeed = 0;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
+        if(Input.GetKeyDown(KeyCode.Space))
         {
             ySpeed = jumpForce;
         }
