@@ -32,7 +32,7 @@ public class PlayerMovement2 : MonoBehaviour
             ySpeed = 0;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space))
+        if(Input.GetKeyDown(KeyCode.Space) && characterController.isGrounded)
         {
             ySpeed = jumpForce;
         }
