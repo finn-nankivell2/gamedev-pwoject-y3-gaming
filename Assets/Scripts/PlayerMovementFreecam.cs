@@ -15,11 +15,12 @@ public class PlayerMovement2 : MonoBehaviour
     private Vector3 velocity;
     private float ySpeed;
     private bool jumpStorage = false;
-    
+
     public int maxAirJumps = 0;
     private int airJumps;
 
     public ParticleSystem airJumpParticles;
+    private Vector3 startPos;
 
     // Start is called before the first frame update
     void Start()
@@ -27,13 +28,13 @@ public class PlayerMovement2 : MonoBehaviour
 		Cursor.lockState = CursorLockMode.Locked;
 		Cursor.visible = false;
         characterController = GetComponent<CharacterController>();
+        startPos = transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         ySpeed -= gravityForce * Time.deltaTime;
-        
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -61,6 +62,10 @@ public class PlayerMovement2 : MonoBehaviour
 		if (norm.magnitude > 0f) {
 			transform.forward = norm;
 		}
+
+		if (Input.GetKeyDown(KeyCode.R)) {
+			transform.position = startPos;
+		}
     }
 
     void FixedUpdate()
@@ -80,7 +85,7 @@ public class PlayerMovement2 : MonoBehaviour
             }
             jumpStorage = false;
         }
-        
+
     }
 
     void LimitSpeed()
