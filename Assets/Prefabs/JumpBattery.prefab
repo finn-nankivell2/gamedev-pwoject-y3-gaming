@@ -22,15 +22,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 211a8e1ade3173e8b91c07fd5b7d7d5e, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 1.9711103
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 211a8e1ade3173e8b91c07fd5b7d7d5e, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 14
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 211a8e1ade3173e8b91c07fd5b7d7d5e, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: 5.958
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 211a8e1ade3173e8b91c07fd5b7d7d5e, type: 3}
       propertyPath: m_LocalRotation.w
@@ -67,7 +67,7 @@ PrefabInstance:
     - target: {fileID: -7511558181221131132, guid: 211a8e1ade3173e8b91c07fd5b7d7d5e, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c32ecd661e92e1ee3ac3c7182a09e276, type: 2}
+      objectReference: {fileID: 2100000, guid: a08dfe14daec84ced9a784503719b809, type: 2}
     - target: {fileID: 919132149155446097, guid: 211a8e1ade3173e8b91c07fd5b7d7d5e, type: 3}
       propertyPath: m_Name
       value: JumpBattery
@@ -85,6 +85,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 211a8e1ade3173e8b91c07fd5b7d7d5e, type: 3}
       insertIndex: -1
       addedObject: {fileID: 4677710045723422574}
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 211a8e1ade3173e8b91c07fd5b7d7d5e, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 3852054015597799105}
   m_SourcePrefab: {fileID: 100100000, guid: 211a8e1ade3173e8b91c07fd5b7d7d5e, type: 3}
 --- !u!1 &5230712660806157996 stripped
 GameObject:
@@ -140,3 +143,17 @@ CapsuleCollider:
   m_Height: 2.25
   m_Direction: 1
   m_Center: {x: 0, y: 0.65625, z: -0.000000019557774}
+--- !u!114 &3852054015597799105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5230712660806157996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04929bbbbf6239059ab0e889ff65612a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  oscillationSpeed: 3
+  oscillationDistance: 1
