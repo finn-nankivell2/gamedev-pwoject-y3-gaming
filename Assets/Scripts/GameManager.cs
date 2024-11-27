@@ -30,6 +30,11 @@ public class GameManager : MonoBehaviour
         
     }
 
+    public void SetSpawnPosition(Transform newPosition)
+    {
+        respawnPosition.position = newPosition.position;
+    }
+
     public void RespawnPlayer(Collider player) {
         StartCoroutine(RespawnPlayerCoroutine(player));
     }

@@ -1,14 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class BatteryPickup : MonoBehaviour
 {
+    public Transform spawnPos;
+
+    void Start()
+    {
+        // newSpawnPosition = GetComponentInChild()
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.tag == "Player")
         {
-            PlayerMovement2 playerMovement = other.GetComponent<PlayerMovement2>();
+            GameManager.Instance.SetSpawnPosition(spawnPos);
+            PlayerMovementFreecam playerMovement = other.GetComponent<PlayerMovementFreecam>();
             playerMovement.AddJump();
             Destroy(gameObject);
         }

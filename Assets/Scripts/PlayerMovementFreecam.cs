@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerMovement2 : MonoBehaviour
+public class PlayerMovementFreecam : MonoBehaviour
 {
     private CharacterController characterController;
     public Transform mainCamera;
