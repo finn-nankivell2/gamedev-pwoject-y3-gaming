@@ -15,7 +15,7 @@ public class DeathPlane : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            StartCoroutine(GameManager.ResetPlayer(other));
+            GameManager.Instance.RespawnPlayer(other);
         }
     }
 
