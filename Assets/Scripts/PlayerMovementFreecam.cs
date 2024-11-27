@@ -65,6 +65,7 @@ public class PlayerMovement2 : MonoBehaviour
 
 		if (Input.GetKeyDown(KeyCode.R)) {
 			transform.position = startPos;
+			Physics.SyncTransforms();
 		}
     }
 
