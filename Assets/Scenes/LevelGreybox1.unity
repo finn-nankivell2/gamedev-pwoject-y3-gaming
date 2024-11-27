@@ -5444,6 +5444,52 @@ ParticleSystem:
         m_PostInfinity: 2
         m_RotationOrder: 4
     vectorLabel1_3: W
+--- !u!1 &806188655
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 806188657}
+  - component: {fileID: 806188656}
+  m_Layer: 0
+  m_Name: GameManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &806188656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806188655}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95bef5055e3fc0b4089a9ac8d8019c67, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  respawnPositionPublic: {fileID: 978631259}
+  sceneTransition: {fileID: 1737891589}
+--- !u!4 &806188657
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 806188655}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -3.1721606, y: 3.227964, z: -4.8561974}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &926258311
 GameObject:
   m_ObjectHideFlags: 0
@@ -6235,7 +6281,7 @@ Transform:
   m_GameObject: {fileID: 1986064647}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: 0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: -0.083, y: 0, z: -0.524}
   m_LocalScale: {x: 0.10000001, y: 3.4719, z: 10}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6360,8 +6406,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1980e2f1a1842050991450f1c986c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  respawnPosition: {fileID: 978631259}
-  sceneTransition: {fileID: 1737891589}
 --- !u!1 &151695594713175890
 GameObject:
   m_ObjectHideFlags: 3
@@ -7449,3 +7493,4 @@ SceneRoots:
   - {fileID: 978631259}
   - {fileID: 1737891591}
   - {fileID: 1942982232}
+  - {fileID: 806188657}
