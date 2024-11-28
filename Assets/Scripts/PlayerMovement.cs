@@ -13,6 +13,8 @@ public class PlayerMovement : MonoBehaviour
     public float gravityForce = 0.3f;
     public float jumpForce = 8f;
 
+    public Animator animationController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -51,6 +53,11 @@ public class PlayerMovement : MonoBehaviour
 		var norm = new Vector3(velocity.normalized.x, 0f, velocity.normalized.z);
 		if (norm.magnitude > 0f) {
 			transform.forward = norm;
+			animationController.SetBool("isRunning", true);
+		}
+
+		else {
+			animationController.SetBool("isRunning", false);
 		}
     }
 

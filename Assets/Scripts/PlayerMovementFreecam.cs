@@ -22,6 +22,8 @@ public class PlayerMovementFreecam : MonoBehaviour
     public ParticleSystem airJumpParticles;
     private Vector3 startPos;
 
+    public Animator animationController;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -61,6 +63,11 @@ public class PlayerMovementFreecam : MonoBehaviour
 		var norm = new Vector3(velocity.normalized.x, 0f, velocity.normalized.z);
 		if (norm.magnitude > 0f) {
 			transform.forward = norm;
+			animationController.SetBool("isRunning", true);
+		}
+
+		else {
+			animationController.SetBool("isRunning", false);
 		}
 
 		if (Input.GetKeyDown(KeyCode.R)) {
