@@ -12,6 +12,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     public float gravityForce = 0.3f;
     public float jumpForce = 8f;
     public float rotationSpeed = 16f;
+    public float jumpPeakSensitivity = 2f;
 
     private Vector3 velocity;
     private float ySpeed;
@@ -24,6 +25,11 @@ public class PlayerMovementFreecam : MonoBehaviour
     private Vector3 startPos;
 
     public Animator animationController;
+
+    enum AnimationState {
+        Idle = 0,
+
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -61,20 +67,40 @@ public class PlayerMovementFreecam : MonoBehaviour
         LimitSpeed();
         characterController.Move(velocity * Time.deltaTime);
 
+        if(characterController.isGrounded) {
+            // 0: Idle
+            animationController.SetInteger("animationState", 0);
+        }
+
 		var norm = new Vector3(velocity.normalized.x, 0f, velocity.normalized.z);
 		if (norm.magnitude > 0f) {
             transform.forward = Vector3.RotateTowards(transform.forward, norm, rotationSpeed * Time.deltaTime, 0.0f);
-			animationController.SetBool("isRunning", true);
+            if(characterController.isGrounded){
+                // 1: Running
+    			animationController.SetInteger("animationState", 1);
+            }
 		}
 
-		else {
-			animationController.SetBool("isRunning", false);
-		}
+        if(!characterController.isGrounded && velocity.y < 0) {
+            // 3: Falling
+            animationController.SetInteger("animationState", 3);
+        }
+
+        if(animationController.GetInteger("animationState") == 2 && velocity.y < jumpPeakSensitivity) {
+            // 4: Jump peak
+            animationController.SetInteger("animationState", 4);
+        }
+
+        Debug.LogFormat("animationState: {0}",
+            animationController.GetInteger("animationState")
+        );
 
 		if (Input.GetKeyDown(KeyCode.R)) {
 			transform.position = startPos;
 			Physics.SyncTransforms();
 		}
+
+        
     }
 
     void FixedUpdate()
@@ -109,6 +135,8 @@ public class PlayerMovementFreecam : MonoBehaviour
     void Jump()
     {
         ySpeed = jumpForce;
+        // 2: Jumping
+        animationController.SetInteger("animationState", 2);
     }
 
     void AirJump()

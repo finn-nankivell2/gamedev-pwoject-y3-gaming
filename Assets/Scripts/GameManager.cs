@@ -44,6 +44,7 @@ public class GameManager : MonoBehaviour
         animator.Play("SlideIn");
         yield return new WaitForSeconds(0.8f);
         player.transform.position = respawnPosition.position;
+        player.transform.rotation = respawnPosition.rotation;
         Physics.SyncTransforms();
         animator.Play("SlideOut");
     }
