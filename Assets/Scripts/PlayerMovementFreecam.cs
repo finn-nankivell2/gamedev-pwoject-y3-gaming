@@ -26,11 +26,6 @@ public class PlayerMovementFreecam : MonoBehaviour
 
     public Animator animationController;
 
-    enum AnimationState {
-        Idle = 0,
-
-    }
-
     // Start is called before the first frame update
     void Start()
     {
@@ -81,15 +76,12 @@ public class PlayerMovementFreecam : MonoBehaviour
             }
 		}
 
-        if(!characterController.isGrounded && velocity.y < 0) {
-            // 3: Falling
-            animationController.SetInteger("animationState", 3);
+        if(!characterController.isGrounded) {
+            // 2: Mid-air
+            animationController.SetInteger("animationState", 2);
+            animationController.SetFloat("JumpVelocityBlend", velocity.y);
         }
-
-        if(animationController.GetInteger("animationState") == 2 && velocity.y < jumpPeakSensitivity) {
-            // 4: Jump peak
-            animationController.SetInteger("animationState", 4);
-        }
+        
 
         Debug.LogFormat("animationState: {0}",
             animationController.GetInteger("animationState")
@@ -135,8 +127,6 @@ public class PlayerMovementFreecam : MonoBehaviour
     void Jump()
     {
         ySpeed = jumpForce;
-        // 2: Jumping
-        animationController.SetInteger("animationState", 2);
     }
 
     void AirJump()
