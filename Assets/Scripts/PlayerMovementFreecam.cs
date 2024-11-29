@@ -11,6 +11,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     public float maxSpeed = 12;
     public float gravityForce = 0.3f;
     public float jumpForce = 8f;
+    public float rotationSpeed = 16f;
 
     private Vector3 velocity;
     private float ySpeed;
@@ -62,7 +63,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 
 		var norm = new Vector3(velocity.normalized.x, 0f, velocity.normalized.z);
 		if (norm.magnitude > 0f) {
-			transform.forward = norm;
+            transform.forward = Vector3.RotateTowards(transform.forward, norm, rotationSpeed * Time.deltaTime, 0.0f);
 			animationController.SetBool("isRunning", true);
 		}
 
