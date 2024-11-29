@@ -35,6 +35,12 @@ public class PlayerMovementFreecam : MonoBehaviour
         startPos = transform.position;
     }
 
+    private Vector3 InputDirection() {
+        float horizontalInput = Input.GetAxisRaw("Horizontal");
+        float verticalInput = Input.GetAxisRaw("Vertical");
+        return new (horizontalInput, 0, verticalInput);
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -45,9 +51,7 @@ public class PlayerMovementFreecam : MonoBehaviour
             jumpStorage = true;
         }
 
-        float horizontalInput = Input.GetAxisRaw("Horizontal");
-        float verticalInput = Input.GetAxisRaw("Vertical");
-        Vector3 inputDirection = new (horizontalInput, 0, verticalInput);
+        Vector3 inputDirection = InputDirection();
 
 		Vector3 cameraDirection = mainCamera.forward;
 		cameraDirection.y = 0f;
@@ -62,30 +66,11 @@ public class PlayerMovementFreecam : MonoBehaviour
         LimitSpeed();
         characterController.Move(velocity * Time.deltaTime);
 
-        if(characterController.isGrounded) {
-            // 0: Idle
-            animationController.SetInteger("animationState", 0);
-        }
-
 		var norm = new Vector3(velocity.normalized.x, 0f, velocity.normalized.z);
 		if (norm.magnitude > 0f) {
             transform.forward = Vector3.RotateTowards(transform.forward, norm, rotationSpeed * Time.deltaTime, 0.0f);
-            if(characterController.isGrounded){
-                // 1: Running
-    			animationController.SetInteger("animationState", 1);
-            }
 		}
 
-        if(!characterController.isGrounded) {
-            // 2: Mid-air
-            animationController.SetInteger("animationState", 2);
-            animationController.SetFloat("JumpVelocityBlend", velocity.y);
-        }
-        
-
-        Debug.LogFormat("animationState: {0}",
-            animationController.GetInteger("animationState")
-        );
 
 		if (Input.GetKeyDown(KeyCode.R)) {
 			transform.position = startPos;
@@ -101,7 +86,26 @@ public class PlayerMovementFreecam : MonoBehaviour
         {
             ySpeed = 0;
             airJumps = maxAirJumps;
+
+            // 0: Idle
+            animationController.SetInteger("animationState", 0);
+
+            if(InputDirection().magnitude > 0f){
+                // 1: Running
+    			animationController.SetInteger("animationState", 1);
+            }
         }
+
+        else {
+            // 2: Mid-air
+            animationController.SetInteger("animationState", 2);
+            animationController.SetFloat("JumpVelocityBlend", velocity.y);
+        }
+
+        // Debug.LogFormat("animationState: {0}",
+        //     animationController.GetInteger("animationState")
+        // );
+        Debug.Log(characterController.isGrounded);
 
         if(jumpStorage){
             if(characterController.isGrounded){
