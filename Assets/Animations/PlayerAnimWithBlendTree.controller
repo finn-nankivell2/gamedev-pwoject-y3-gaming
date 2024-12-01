@@ -11,13 +11,13 @@ AnimatorStateMachine:
   m_ChildStates:
   - serializedVersion: 1
     m_State: {fileID: -5475476855482540025}
-    m_Position: {x: -20, y: 210, z: 0}
+    m_Position: {x: -20, y: 270, z: 0}
   - serializedVersion: 1
     m_State: {fileID: -2765229601625559574}
-    m_Position: {x: -60, y: 300, z: 0}
+    m_Position: {x: -40, y: 380, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1339716495801228922}
-    m_Position: {x: 260, y: 260, z: 0}
+    m_Position: {x: 220, y: 260, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -201,7 +201,7 @@ BlendTree:
   m_Name: Blend Tree
   m_Childs:
   - serializedVersion: 2
-    m_Motion: {fileID: -6100890059330435080, guid: d873ca0630817a1efaa3232a20cc5f06, type: 3}
+    m_Motion: {fileID: 867049615693595930, guid: d873ca0630817a1efaa3232a20cc5f06, type: 3}
     m_Threshold: -10
     m_Position: {x: 0, y: 0}
     m_TimeScale: 1
@@ -263,7 +263,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Blend Tree
+  m_Name: Jump Blend Tree
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:

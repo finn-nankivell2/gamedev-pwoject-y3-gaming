@@ -76,8 +76,6 @@ public class PlayerMovementFreecam : MonoBehaviour
 			transform.position = startPos;
 			Physics.SyncTransforms();
 		}
-
-        
     }
 
     void FixedUpdate()
@@ -88,7 +86,7 @@ public class PlayerMovementFreecam : MonoBehaviour
             airJumps = maxAirJumps;
 
             // 0: Idle
-            animationController.SetInteger("animationState", 0);
+			animationController.SetInteger("animationState", 0);
 
             if(InputDirection().magnitude > 0f){
                 // 1: Running
