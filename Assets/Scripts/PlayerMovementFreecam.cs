@@ -33,6 +33,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 		Cursor.visible = false;
         characterController = GetComponent<CharacterController>();
         startPos = transform.position;
+        animationController = GetComponent<Animator>();
     }
 
     private Vector3 InputDirection() {
@@ -88,6 +89,11 @@ public class PlayerMovementFreecam : MonoBehaviour
             // 0: Idle
 			animationController.SetInteger("animationState", 0);
 
+			if (Input.GetKey(KeyCode.F)) {
+
+				animationController.SetInteger("animationState", 3);
+			}
+
             if(InputDirection().magnitude > 0f){
                 // 1: Running
     			animationController.SetInteger("animationState", 1);
@@ -103,7 +109,6 @@ public class PlayerMovementFreecam : MonoBehaviour
         // Debug.LogFormat("animationState: {0}",
         //     animationController.GetInteger("animationState")
         // );
-        Debug.Log(characterController.isGrounded);
 
         if(jumpStorage){
             if(characterController.isGrounded){
