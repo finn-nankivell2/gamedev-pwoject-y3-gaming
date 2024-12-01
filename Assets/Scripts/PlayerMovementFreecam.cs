@@ -4,27 +4,31 @@ using UnityEngine;
 
 public class PlayerMovementFreecam : MonoBehaviour
 {
+    [Header("Camera")]
     private CharacterController characterController;
     public Transform mainCamera;
     public Transform orientation;
 
+    [Header("Movement")]
     public float maxSpeed = 12;
     public float gravityForce = 0.3f;
-    public float jumpForce = 8f;
     public float rotationSpeed = 16f;
-    public float jumpPeakSensitivity = 2f;
+
+    [Header("Jumping")]
+    public float jumpForce = 8f;
+    public int maxAirJumps = 0;
+    private int airJumps;
 
     private Vector3 velocity;
     private float ySpeed;
     private bool jumpStorage = false;
 
-    public int maxAirJumps = 0;
-    private int airJumps;
-
     public ParticleSystem airJumpParticles;
     private Vector3 startPos;
 
+    [Header("Animation")]
     public Animator animationController;
+    public float kickAnimationSlowdownRate = 0.25f;
 
     // Start is called before the first frame update
     void Start()
@@ -77,6 +81,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 			transform.position = startPos;
 			Physics.SyncTransforms();
 		}
+
     }
 
     void FixedUpdate()
@@ -89,15 +94,14 @@ public class PlayerMovementFreecam : MonoBehaviour
             // 0: Idle
 			animationController.SetInteger("animationState", 0);
 
-			if (Input.GetKey(KeyCode.F)) {
-
-				animationController.SetInteger("animationState", 3);
-			}
-
             if(InputDirection().magnitude > 0f){
                 // 1: Running
     			animationController.SetInteger("animationState", 1);
             }
+
+			if (Input.GetKey(KeyCode.F)) {
+				animationController.SetInteger("animationState", 3);
+			}
         }
 
         else {
@@ -125,8 +129,9 @@ public class PlayerMovementFreecam : MonoBehaviour
     void LimitSpeed()
     {
         Vector3 flatVelocity = new Vector3(velocity.x, 0, velocity.z);
-        if(flatVelocity.magnitude > maxSpeed){
-            Vector3 limitedFlatVelocity = flatVelocity.normalized * maxSpeed;
+        float localMaxSpeed = (animationController.GetCurrentAnimatorStateInfo(0).IsName("metarig|kick")) ? maxSpeed * kickAnimationSlowdownRate : maxSpeed;
+        if(flatVelocity.magnitude > localMaxSpeed) {
+            Vector3 limitedFlatVelocity = flatVelocity.normalized * localMaxSpeed;
             velocity = new (limitedFlatVelocity.x, velocity.y, limitedFlatVelocity.z);
         }
     }
