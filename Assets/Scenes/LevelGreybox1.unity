@@ -320,7 +320,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &538865492
 RectTransform:
   m_ObjectHideFlags: 0
@@ -7536,12 +7536,12 @@ MonoBehaviour:
   orientation: {fileID: 1971289951}
   maxSpeed: 12
   gravityForce: 30
-  jumpForce: 16
   rotationSpeed: 16
-  jumpPeakSensitivity: 2
+  jumpForce: 16
   maxAirJumps: 0
   airJumpParticles: {fileID: 794479331}
   animationController: {fileID: 7956461120897736555}
+  kickAnimationSlowdownRate: 0.25
 --- !u!95 &7956461120897736555
 Animator:
   serializedVersion: 5

@@ -30,6 +30,14 @@ public class PlayerMovementFreecam : MonoBehaviour
     public Animator animationController;
     public float kickAnimationSlowdownRate = 0.25f;
 
+	private static class AnimationState {
+		static public int Idle = 0;
+		static public int Run = 1;
+		static public int Midair = 2;
+		static public int Kick = 3;
+		static public int DoubleJump = 4;
+	}
+
     // Start is called before the first frame update
     void Start()
     {
@@ -86,27 +94,34 @@ public class PlayerMovementFreecam : MonoBehaviour
 
     void FixedUpdate()
     {
+
+		int state = animationController.GetInteger("animationState");
+		if (state == AnimationState.DoubleJump) {
+			Debug.Log("wehhhhh");
+		}
+
         if(characterController.isGrounded)
         {
             ySpeed = 0;
             airJumps = maxAirJumps;
 
             // 0: Idle
-			animationController.SetInteger("animationState", 0);
+			animationController.SetInteger("animationState", AnimationState.Idle);
 
             if(InputDirection().magnitude > 0f){
                 // 1: Running
-    			animationController.SetInteger("animationState", 1);
+    			animationController.SetInteger("animationState", AnimationState.Run);
             }
 
+			// 3: Kick
 			if (Input.GetKey(KeyCode.F)) {
-				animationController.SetInteger("animationState", 3);
+				animationController.SetInteger("animationState", AnimationState.Kick);
 			}
         }
 
         else {
             // 2: Mid-air
-            animationController.SetInteger("animationState", 2);
+            animationController.SetInteger("animationState", AnimationState.Midair);
             animationController.SetFloat("JumpVelocityBlend", velocity.y);
         }
 
@@ -144,6 +159,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     void AirJump()
     {
         if(airJumps > 0){
+			animationController.SetInteger("animationState", AnimationState.DoubleJump);
             ySpeed = jumpForce;
             airJumps -= 1;
             airJumpParticles.Play();
