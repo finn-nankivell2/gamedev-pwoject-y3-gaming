@@ -13,6 +13,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     public float maxSpeed = 12;
     public float gravityForce = 0.3f;
     public float rotationSpeed = 16f;
+    public float airSpeedMod = 1.2f;
 
     [Header("Jumping")]
     public float jumpForce = 8f;
@@ -76,7 +77,7 @@ public class PlayerMovementFreecam : MonoBehaviour
         velocity = flatMoveDirection.normalized * maxSpeed;
         velocity.y = ySpeed;
 
-        LimitSpeed();
+		ModifySpeed();
         characterController.Move(velocity * Time.deltaTime);
 
 		var norm = new Vector3(velocity.normalized.x, 0f, velocity.normalized.z);
@@ -94,12 +95,6 @@ public class PlayerMovementFreecam : MonoBehaviour
 
     void FixedUpdate()
     {
-
-		int state = animationController.GetInteger("animationState");
-		if (state == AnimationState.DoubleJump) {
-			Debug.Log("wehhhhh");
-		}
-
         if(characterController.isGrounded)
         {
             ySpeed = 0;
@@ -141,14 +136,21 @@ public class PlayerMovementFreecam : MonoBehaviour
 
     }
 
-    void LimitSpeed()
+    void ModifySpeed()
     {
         Vector3 flatVelocity = new Vector3(velocity.x, 0, velocity.z);
-        float localMaxSpeed = (animationController.GetCurrentAnimatorStateInfo(0).IsName("metarig|kick")) ? maxSpeed * kickAnimationSlowdownRate : maxSpeed;
-        if(flatVelocity.magnitude > localMaxSpeed) {
-            Vector3 limitedFlatVelocity = flatVelocity.normalized * localMaxSpeed;
-            velocity = new (limitedFlatVelocity.x, velocity.y, limitedFlatVelocity.z);
+		float localMaxSpeed = maxSpeed;
+
+		if (animationController.GetCurrentAnimatorStateInfo(0).IsName("metarig|kick")) {
+			localMaxSpeed = maxSpeed * kickAnimationSlowdownRate;
+		}
+
+        if (!characterController.isGrounded) {
+			localMaxSpeed = maxSpeed * airSpeedMod;
         }
+
+		Vector3 limitedFlatVelocity = flatVelocity.normalized * localMaxSpeed;
+		velocity = new (limitedFlatVelocity.x, velocity.y, limitedFlatVelocity.z);
     }
 
     void Jump()
