@@ -13,12 +13,14 @@ public class PlayerMovementFreecam : MonoBehaviour
     public float maxSpeed = 12;
     public float gravityForce = 0.3f;
     public float rotationSpeed = 16f;
-    public float airSpeedMod = 1.2f;
 
     [Header("Jumping")]
     public float jumpForce = 8f;
     public int maxAirJumps = 0;
     private int airJumps;
+    public float airSpeedMod = 1.2f;
+    public float airJumpModAdd = 0.2f;
+    private float airJumpMod;
 
     private Vector3 velocity;
     private float ySpeed;
@@ -47,6 +49,7 @@ public class PlayerMovementFreecam : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         startPos = transform.position;
         animationController = GetComponent<Animator>();
+        airJumpMod = airSpeedMod;
     }
 
     private Vector3 InputDirection() {
@@ -85,7 +88,6 @@ public class PlayerMovementFreecam : MonoBehaviour
             transform.forward = Vector3.RotateTowards(transform.forward, norm, rotationSpeed * Time.deltaTime, 0.0f);
 		}
 
-
 		if (Input.GetKeyDown(KeyCode.R)) {
 			transform.position = startPos;
 			Physics.SyncTransforms();
@@ -99,6 +101,7 @@ public class PlayerMovementFreecam : MonoBehaviour
         {
             ySpeed = 0;
             airJumps = maxAirJumps;
+            airJumpMod = airSpeedMod;
 
             // 0: Idle
 			animationController.SetInteger("animationState", AnimationState.Idle);
@@ -146,7 +149,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 		}
 
         if (!characterController.isGrounded) {
-			localMaxSpeed = maxSpeed * airSpeedMod;
+			localMaxSpeed = maxSpeed * airJumpMod;
         }
 
 		Vector3 limitedFlatVelocity = flatVelocity.normalized * localMaxSpeed;
@@ -165,6 +168,7 @@ public class PlayerMovementFreecam : MonoBehaviour
             ySpeed = jumpForce;
             airJumps -= 1;
             airJumpParticles.Play();
+            airJumpMod += airJumpModAdd;
         }
     }
 
