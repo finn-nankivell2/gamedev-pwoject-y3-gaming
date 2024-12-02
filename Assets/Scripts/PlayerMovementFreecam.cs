@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -27,6 +28,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     private bool jumpStorage = false;
 
     public GameObject airJumpParticles;
+    public Transform particleOrigin;
     private Vector3 startPos;
 
     [Header("Animation")]
@@ -65,7 +67,6 @@ public class PlayerMovementFreecam : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
-            Debug.Log("jump storage activated");
             jumpStorage = true;
         }
 
@@ -124,10 +125,6 @@ public class PlayerMovementFreecam : MonoBehaviour
             animationController.SetFloat("JumpVelocityBlend", velocity.y);
         }
 
-        // Debug.LogFormat("animationState: {0}",
-        //     animationController.GetInteger("animationState")
-        // );
-
         if(jumpStorage){
             if(characterController.isGrounded){
                 Jump();
@@ -168,9 +165,8 @@ public class PlayerMovementFreecam : MonoBehaviour
 			animationController.SetInteger("animationState", AnimationState.DoubleJump);
             ySpeed = jumpForce;
             airJumps -= 1;
-            Debug.Log(airJumps);
 
-            Instantiate(airJumpParticles, transform.position, transform.rotation);
+            Instantiate(airJumpParticles, transform.position, particleOrigin.rotation);
             // airJumpParticles.Play();
             airJumpMod += airJumpModAdd;
         }
@@ -179,5 +175,6 @@ public class PlayerMovementFreecam : MonoBehaviour
     public void AddJump()
     {
         maxAirJumps += 1;
+        airJumps = maxAirJumps;
     }
 }
