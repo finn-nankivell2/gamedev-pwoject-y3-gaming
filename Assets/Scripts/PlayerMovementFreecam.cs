@@ -26,7 +26,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     private float ySpeed;
     private bool jumpStorage = false;
 
-    public ParticleSystem airJumpParticles;
+    public GameObject airJumpParticles;
     private Vector3 startPos;
 
     [Header("Animation")]
@@ -65,6 +65,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
+            Debug.Log("jump storage activated");
             jumpStorage = true;
         }
 
@@ -167,7 +168,10 @@ public class PlayerMovementFreecam : MonoBehaviour
 			animationController.SetInteger("animationState", AnimationState.DoubleJump);
             ySpeed = jumpForce;
             airJumps -= 1;
-            airJumpParticles.Play();
+            Debug.Log(airJumps);
+
+            Instantiate(airJumpParticles, transform.position, transform.rotation);
+            // airJumpParticles.Play();
             airJumpMod += airJumpModAdd;
         }
     }
