@@ -34,8 +34,10 @@ public class PlayerMovementFreecam : MonoBehaviour
     private float ySpeed;
     private bool jumpStorage = false;
 
+    [Header("Particles")]
     public GameObject airJumpParticles;
     public Transform particleOrigin;
+    public ParticleSystem residualJumpParticles;
     private Vector3 startPos;
 
     [Header("Animation")]
@@ -189,7 +191,7 @@ public class PlayerMovementFreecam : MonoBehaviour
             airJumps -= 1;
 
             Instantiate(airJumpParticles, transform.position, particleOrigin.rotation);
-            // airJumpParticles.Play();
+            residualJumpParticles.Play();
             airSpeedMod += airJumpModAdd;
         }
     }
