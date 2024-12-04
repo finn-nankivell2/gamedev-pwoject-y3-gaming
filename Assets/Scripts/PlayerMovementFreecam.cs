@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using GLTF.Schema;
 using UnityEngine;
 
 public class PlayerMovementFreecam : MonoBehaviour
@@ -19,12 +20,15 @@ public class PlayerMovementFreecam : MonoBehaviour
     public float jumpForce = 8f;
     public int maxAirJumps = 0;
     private int airJumps;
-    public float airSpeedMod = 1.2f;
+    public float baseSpeedMod = 1f;
+    private float currentAirSpeedMod;
     public float airJumpModAdd = 0.2f;
-    private float airJumpMod;
+    public float timeToSlow = 0.5f;
+    public float speedModLostOnTouch = 0.4f;
     public float coyoteSeconds = 0.2f;
     private float midairTime;
     private bool hasJumped = false;
+    private bool touchedGroundLastFrame = false;
 
     private Vector3 velocity;
     private float ySpeed;
@@ -54,7 +58,7 @@ public class PlayerMovementFreecam : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         startPos = transform.position;
         animationController = GetComponent<Animator>();
-        airJumpMod = airSpeedMod;
+        currentAirSpeedMod = baseSpeedMod;
     }
 
     private Vector3 InputDirection() {
@@ -106,9 +110,17 @@ public class PlayerMovementFreecam : MonoBehaviour
         {
             ySpeed = 0;
             airJumps = maxAirJumps;
-            airJumpMod = airSpeedMod;
+            // currentAirSpeedMod = baseAirSpeedMod;
             midairTime = 0f;
             hasJumped = false;
+
+            if(currentAirSpeedMod > baseSpeedMod) {
+                float extraAirSpeed = currentAirSpeedMod - baseSpeedMod;
+                if(touchedGroundLastFrame){
+                    currentAirSpeedMod -= extraAirSpeed * speedModLostOnTouch;
+                }
+                currentAirSpeedMod -= extraAirSpeed * Time.deltaTime / timeToSlow;
+            }
 
             // 0: Idle
 			animationController.SetInteger("animationState", AnimationState.Idle);
@@ -122,13 +134,19 @@ public class PlayerMovementFreecam : MonoBehaviour
 			if (Input.GetKey(KeyCode.F)) {
 				animationController.SetInteger("animationState", AnimationState.Kick);
 			}
+
+            touchedGroundLastFrame = true;
         }
 
         else {
             // 2: Mid-air
+            if(touchedGroundLastFrame) {
+                currentAirSpeedMod += airJumpModAdd;
+            }
             animationController.SetInteger("animationState", AnimationState.Midair);
             animationController.SetFloat("JumpVelocityBlend", velocity.y);
             midairTime += Time.deltaTime;
+            touchedGroundLastFrame = false;
         }
 
         if(jumpStorage){
@@ -153,9 +171,10 @@ public class PlayerMovementFreecam : MonoBehaviour
 			localMaxSpeed = maxSpeed * kickAnimationSlowdownRate;
 		}
 
-        if (!characterController.isGrounded) {
-			localMaxSpeed = maxSpeed * airJumpMod;
-        }
+        // if (!characterController.isGrounded) {
+		// 	localMaxSpeed = maxSpeed * currentAirSpeedMod;
+        // }
+        localMaxSpeed = maxSpeed * currentAirSpeedMod;
 
 		Vector3 limitedFlatVelocity = flatVelocity.normalized * localMaxSpeed;
 		velocity = new (limitedFlatVelocity.x, velocity.y, limitedFlatVelocity.z);
@@ -175,7 +194,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 
             Instantiate(airJumpParticles, transform.position, particleOrigin.rotation);
             // airJumpParticles.Play();
-            airJumpMod += airJumpModAdd;
+            currentAirSpeedMod += airJumpModAdd;
         }
     }
 
