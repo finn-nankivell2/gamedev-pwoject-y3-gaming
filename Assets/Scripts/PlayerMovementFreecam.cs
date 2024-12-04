@@ -22,6 +22,9 @@ public class PlayerMovementFreecam : MonoBehaviour
     public float airSpeedMod = 1.2f;
     public float airJumpModAdd = 0.2f;
     private float airJumpMod;
+    public float coyoteSeconds = 0.2f;
+    private float midairTime;
+    private bool hasJumped = false;
 
     private Vector3 velocity;
     private float ySpeed;
@@ -104,6 +107,8 @@ public class PlayerMovementFreecam : MonoBehaviour
             ySpeed = 0;
             airJumps = maxAirJumps;
             airJumpMod = airSpeedMod;
+            midairTime = 0f;
+            hasJumped = false;
 
             // 0: Idle
 			animationController.SetInteger("animationState", AnimationState.Idle);
@@ -123,16 +128,18 @@ public class PlayerMovementFreecam : MonoBehaviour
             // 2: Mid-air
             animationController.SetInteger("animationState", AnimationState.Midair);
             animationController.SetFloat("JumpVelocityBlend", velocity.y);
+            midairTime += Time.deltaTime;
         }
 
         if(jumpStorage){
-            if(characterController.isGrounded){
+            if(characterController.isGrounded || (midairTime < coyoteSeconds && !hasJumped)){
                 Jump();
             }
             else{
                 AirJump();
             }
             jumpStorage = false;
+            hasJumped = true;
         }
 
     }

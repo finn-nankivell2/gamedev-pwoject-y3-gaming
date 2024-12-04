@@ -3084,7 +3084,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4521919631826923414}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000003183547, y: 0.47816542, z: -0.000000019149795, w: 0.8782698}
+  m_LocalRotation: {x: 0.0000000054797713, y: 0.47816542, z: -0.0000000096498525, w: 0.87826985}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3234,7 +3234,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4146735556338598722}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000009300207, y: 0.47816533, z: -0.00000010614812, w: 0.87826985}
+  m_LocalRotation: {x: 0.0000000054797713, y: 0.47816542, z: -0.0000000096498525, w: 0.87826985}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3399,7 +3399,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1187723157390275820}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.00000003183547, y: 0.47816542, z: -0.000000019149795, w: 0.8782698}
+  m_LocalRotation: {x: 0.0000000054797713, y: 0.47816542, z: -0.0000000096498525, w: 0.87826985}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -3646,7 +3646,8 @@ MonoBehaviour:
   jumpForce: 16
   maxAirJumps: 0
   airSpeedMod: 1.2
-  airJumpModAdd: 0.2
+  airJumpModAdd: 0.25
+  coyoteSeconds: 0.2
   airJumpParticles: {fileID: 4763166539852182185, guid: c62d3629250602110a8ef97f618debce, type: 3}
   particleOrigin: {fileID: 515848139}
   animationController: {fileID: 7956461120897736555}

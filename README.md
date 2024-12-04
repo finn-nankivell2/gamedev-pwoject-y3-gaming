@@ -1,5 +1,4 @@
 # TODO
-- implement coyote time
 - skybox
 - tutorial clean-up
 - create two levels
