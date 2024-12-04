@@ -21,7 +21,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     public int maxAirJumps = 0;
     private int airJumps;
     public float baseSpeedMod = 1f;
-    private float currentAirSpeedMod;
+    private float airSpeedMod;
     public float airJumpModAdd = 0.2f;
     public float timeToSlow = 0.5f;
     public float speedModLostOnTouch = 0.4f;
@@ -58,7 +58,7 @@ public class PlayerMovementFreecam : MonoBehaviour
         characterController = GetComponent<CharacterController>();
         startPos = transform.position;
         animationController = GetComponent<Animator>();
-        currentAirSpeedMod = baseSpeedMod;
+        airSpeedMod = baseSpeedMod;
     }
 
     private Vector3 InputDirection() {
@@ -110,16 +110,15 @@ public class PlayerMovementFreecam : MonoBehaviour
         {
             ySpeed = 0;
             airJumps = maxAirJumps;
-            // currentAirSpeedMod = baseAirSpeedMod;
             midairTime = 0f;
             hasJumped = false;
 
-            if(currentAirSpeedMod > baseSpeedMod) {
-                float extraAirSpeed = currentAirSpeedMod - baseSpeedMod;
-                if(touchedGroundLastFrame){
-                    currentAirSpeedMod -= extraAirSpeed * speedModLostOnTouch;
+            if(airSpeedMod > baseSpeedMod) {
+                float extraAirSpeed = airSpeedMod - baseSpeedMod;
+                if(!touchedGroundLastFrame){
+                    airSpeedMod -= extraAirSpeed * speedModLostOnTouch;
                 }
-                currentAirSpeedMod -= extraAirSpeed * Time.deltaTime / timeToSlow;
+                airSpeedMod -= extraAirSpeed * Time.deltaTime / timeToSlow;
             }
 
             // 0: Idle
@@ -141,7 +140,7 @@ public class PlayerMovementFreecam : MonoBehaviour
         else {
             // 2: Mid-air
             if(touchedGroundLastFrame) {
-                currentAirSpeedMod += airJumpModAdd;
+                airSpeedMod += airJumpModAdd;
             }
             animationController.SetInteger("animationState", AnimationState.Midair);
             animationController.SetFloat("JumpVelocityBlend", velocity.y);
@@ -171,10 +170,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 			localMaxSpeed = maxSpeed * kickAnimationSlowdownRate;
 		}
 
-        // if (!characterController.isGrounded) {
-		// 	localMaxSpeed = maxSpeed * currentAirSpeedMod;
-        // }
-        localMaxSpeed = maxSpeed * currentAirSpeedMod;
+        localMaxSpeed = maxSpeed * airSpeedMod;
 
 		Vector3 limitedFlatVelocity = flatVelocity.normalized * localMaxSpeed;
 		velocity = new (limitedFlatVelocity.x, velocity.y, limitedFlatVelocity.z);
@@ -194,7 +190,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 
             Instantiate(airJumpParticles, transform.position, particleOrigin.rotation);
             // airJumpParticles.Play();
-            currentAirSpeedMod += airJumpModAdd;
+            airSpeedMod += airJumpModAdd;
         }
     }
 
@@ -202,5 +198,10 @@ public class PlayerMovementFreecam : MonoBehaviour
     {
         maxAirJumps += 1;
         airJumps = maxAirJumps;
+    }
+
+    public void ResetSpeedMod()
+    {
+        airSpeedMod = baseSpeedMod;
     }
 }

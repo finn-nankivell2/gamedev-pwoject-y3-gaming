@@ -45,12 +45,17 @@ public class GameManager : MonoBehaviour
     public IEnumerator RespawnPlayerCoroutine(Collider player)
     {
         animator.Play("SlideIn");
+        
         yield return new WaitForSeconds(0.8f);
+
+        PlayerMovementFreecam playerMovement = player.GetComponent<PlayerMovementFreecam>();
+        playerMovement.ResetSpeedMod();
+
         player.transform.position = respawnPosition.position;
         player.transform.rotation = respawnPosition.rotation;
         freeLookCamera.m_XAxis.Value = respawnPosition.rotation.y * (360/Mathf.PI);
-        Debug.Log(respawnPosition.rotation.y * (360/Mathf.PI));
         Physics.SyncTransforms();
+
         animator.Play("SlideOut");
     }
 }
