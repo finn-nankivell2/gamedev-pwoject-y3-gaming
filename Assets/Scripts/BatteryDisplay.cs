@@ -7,7 +7,19 @@ using UnityEngine.UI;
 
 public class BatteryDisplay : MonoBehaviour
 {
-    private List<GameObject> batterySprites = new List<GameObject>();
+    private struct Battery
+    {
+        public GameObject obj;
+        public Image img;
+
+        public Battery(GameObject batObj, Image image)
+        {
+            obj = batObj;
+            img = image;
+        }
+    }
+
+    private List<Battery> batteries = new List<Battery>();
     public GameObject batteryPrefab;
     public float batteryOffset = 100;
     private int uiMaxAirJumps = 0;
@@ -31,29 +43,12 @@ public class BatteryDisplay : MonoBehaviour
             uiMaxAirJumps = playerScript.maxAirJumps;
         }
 
-        if (playerScript.airJumps < uiCurrentAirJumps) {
-            int diff = playerScript.maxAirJumps - playerScript.airJumps;
-            int idx = batterySprites.Count - diff;
-
-            Image img = batterySprites[idx].GetComponent<Image>();
-            img.color = Color.black;
-            uiCurrentAirJumps = playerScript.airJumps;
-        }
-
-        if (playerScript.airJumps > uiCurrentAirJumps) {
-            foreach (GameObject battery in batterySprites) {
-                Image img2 = battery.GetComponent<Image>();
-                img2.color = Color.white;
-
-            }
-            uiCurrentAirJumps = playerScript.airJumps;
-        }
-
         for(int i=0; i<uiMaxAirJumps; i++)
         {
-            if(i < playerScript.airJumps)
-            {
-
+            if(i < playerScript.airJumps) {
+                batteries[i].img.color = Color.white;
+            } else {
+                batteries[i].img.color = Color.black;
             }
         }
 
@@ -61,12 +56,14 @@ public class BatteryDisplay : MonoBehaviour
 
     void AddBatterySprite()
     {
-        var batteryImage = Instantiate(batteryPrefab);
-        batteryImage.transform.SetParent(transform);
+        var batteryObject = Instantiate(batteryPrefab);
+        batteryObject.transform.SetParent(transform);
 
-        var rect = batteryImage.GetComponent<RectTransform>();
+        var rect = batteryObject.GetComponent<RectTransform>();
         rect.anchoredPosition = new Vector2(0f, 0f); 
-        batteryImage.transform.position += new Vector3(batterySprites.Count*batteryOffset, 0, 0);
-        batterySprites.Add(batteryImage);
+        batteryObject.transform.position += new Vector3(batteries.Count*batteryOffset, 0, 0);
+        Image batteryImage = batteryObject.GetComponent<Image>();
+        Battery battery = new Battery(batteryObject, batteryImage);
+        batteries.Add(battery);
     }
 }
