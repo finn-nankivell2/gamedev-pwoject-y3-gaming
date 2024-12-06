@@ -42,6 +42,10 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RespawnPlayerCoroutine(player));
     }
 
+    public void LoadNextLevel() {
+        Debug.Log("time to load the next scene!");
+    }
+
     public IEnumerator RespawnPlayerCoroutine(Collider player)
     {
         animator.Play("SlideIn");
