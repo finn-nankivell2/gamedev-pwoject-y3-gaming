@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using Unity.VisualScripting;
 using UnityEditor.Purchasing;
 using UnityEngine;
 
@@ -11,6 +12,13 @@ public class GameManager : MonoBehaviour
     public Transform respawnPosition;
     public GameObject sceneTransition;
     public CinemachineFreeLook freeLookCamera;
+    public GameObject player;
+
+    [System.NonSerialized]
+    public PlayerMovementFreecam playerScript;
+
+    public GameObject canvas;
+
     private Animator animator;
 
     // Start is called before the first frame update
@@ -23,6 +31,7 @@ public class GameManager : MonoBehaviour
         }
 
         animator = sceneTransition.GetComponent<Animator>();
+        playerScript = player.GetComponent<PlayerMovementFreecam>();
         Instance = this;
     }
 

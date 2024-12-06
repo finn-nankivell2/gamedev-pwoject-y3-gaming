@@ -19,7 +19,9 @@ public class PlayerMovementFreecam : MonoBehaviour
     [Header("Jumping")]
     public float jumpForce = 8f;
     public int maxAirJumps = 0;
-    private int airJumps;
+    
+    [System.NonSerialized]
+    public int airJumps;
     public float baseSpeedMod = 1f;
     private float airSpeedMod;
     public float airJumpModAdd = 0.2f;
