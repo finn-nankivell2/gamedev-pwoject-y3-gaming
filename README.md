@@ -8,7 +8,7 @@
 - polish
 - enemies
 - level transition
-- particle manager
+- [x] - particle manager
 - background buildings
 - fog on the bottom
 - enemies?

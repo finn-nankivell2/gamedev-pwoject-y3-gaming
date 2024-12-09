@@ -432,6 +432,7 @@ MonoBehaviour:
   mainCamera: {fileID: 963194228}
   gravityForce: 0.25
   jumpForce: 6
+  animationController: {fileID: 0}
 --- !u!143 &588857960
 CharacterController:
   m_ObjectHideFlags: 0
@@ -728,7 +729,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 838681523}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.61541224, y: 0, z: 0, w: 0.78820544}
+  m_LocalRotation: {x: 0.61541224, y: -0.000000014255531, z: 0.000000011130381, w: 0.78820544}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2324,7 +2325,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2053588895}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.61541224, y: 0, z: 0, w: 0.78820544}
+  m_LocalRotation: {x: 0.61541224, y: -0.000000014255531, z: 0.000000011130381, w: 0.78820544}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
