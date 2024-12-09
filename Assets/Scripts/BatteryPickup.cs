@@ -20,6 +20,7 @@ public class BatteryPickup : MonoBehaviour
             PlayerMovementFreecam playerMovement = other.GetComponent<PlayerMovementFreecam>();
             playerMovement.AddJump();
             Destroy(gameObject);
+            GameManager.Instance.particleManager.Play("battery", transform.position);
         }
         
     }

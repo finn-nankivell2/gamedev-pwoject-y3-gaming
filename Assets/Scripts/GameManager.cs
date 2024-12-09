@@ -21,6 +21,8 @@ public class GameManager : MonoBehaviour
 
     private Animator animator;
 
+    public ParticleManager particleManager;
+
     // Start is called before the first frame update
     void Awake()
     {

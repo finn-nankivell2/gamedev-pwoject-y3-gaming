@@ -192,7 +192,8 @@ public class PlayerMovementFreecam : MonoBehaviour
             ySpeed = jumpForce;
             airJumps -= 1;
 
-            Instantiate(airJumpParticles, transform.position, particleOrigin.rotation);
+            // Instantiate(airJumpParticles, transform.position, particleOrigin.rotation);
+            GameManager.Instance.particleManager.Play("jump", transform.position, particleOrigin.rotation);
             residualJumpParticles.Play();
             airSpeedMod += airJumpModAdd;
         }
