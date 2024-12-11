@@ -1,16 +1,22 @@
 # TODO:
 
-- skybox
-- tutorial clean-up
-- create two levels
-- character name
-- UI
-- polish
-- enemies
+## urgent:
+
+- win state
 - level transition
-- [x] - particle manager
+- create one levels
+- UI
+- outline shader
+- skybox
+- ground pound like the game "mario"
+- environmental art
 - background buildings
 - fog on the bottom
-- enemies?
-- fix the weird thing at the top of the end of level cylinder
-- make gamemanager a prefab
+
+
+## not so urgent:
+
+- tutorial clean-up
+- polish
+- character colour select
+- character name
