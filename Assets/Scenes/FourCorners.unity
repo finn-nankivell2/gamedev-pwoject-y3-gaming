@@ -1213,6 +1213,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: JumpBattery (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 5830616300755209664, guid: 403620d8f835f258e83184eabb948511, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.965926
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830616300755209664, guid: 403620d8f835f258e83184eabb948511, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830616300755209664, guid: 403620d8f835f258e83184eabb948511, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: -0.2588186
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830616300755209664, guid: 403620d8f835f258e83184eabb948511, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: -0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5830616300755209664, guid: 403620d8f835f258e83184eabb948511, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: -30
+      objectReference: {fileID: 0}
     - target: {fileID: 8744641723115477170, guid: 403620d8f835f258e83184eabb948511, type: 3}
       propertyPath: m_LocalPosition.x
       value: 32.05
@@ -1323,9 +1343,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 572364176900286837, guid: 403620d8f835f258e83184eabb948511, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 2644354449434744483, guid: 403620d8f835f258e83184eabb948511, type: 3}
       propertyPath: m_Name
       value: JumpBattery (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 2644354449434744483, guid: 403620d8f835f258e83184eabb948511, type: 3}
+      propertyPath: m_Layer
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 5012346665004222084, guid: 403620d8f835f258e83184eabb948511, type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 5830616300755209664, guid: 403620d8f835f258e83184eabb948511, type: 3}
       propertyPath: m_LocalRotation.w

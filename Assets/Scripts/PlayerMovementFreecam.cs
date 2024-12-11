@@ -106,8 +106,6 @@ public class PlayerMovementFreecam : MonoBehaviour
 			Physics.SyncTransforms();
 		}
 
-        Debug.Log(new Vector3(velocity.x, 0, velocity.z).magnitude);
-
     }
 
     void FixedUpdate()

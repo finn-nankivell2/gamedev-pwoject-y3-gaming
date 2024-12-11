@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 1458999037566879616}
   - component: {fileID: 8910897632818473065}
   - component: {fileID: 1003435768903011897}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: BatteryModel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -124,7 +124,7 @@ GameObject:
   - component: {fileID: 8744641723115477170}
   - component: {fileID: 6614213245009202995}
   - component: {fileID: 4117496191720933734}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: JumpBattery
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -193,7 +193,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5830616300755209664}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: NewSpawnPosition
   m_TagString: Untagged
   m_Icon: {fileID: 0}
