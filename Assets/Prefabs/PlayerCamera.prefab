@@ -5727,8 +5727,11 @@ MonoBehaviour:
   maxSpeed: 12
   gravityForce: 30
   rotationSpeed: 16
+  groundPoundVelocity: 200
   jumpForce: 16
   maxAirJumps: 0
+  highJumpModifier: 1.5
+  highJumpWindow: 0.25
   baseSpeedMod: 1
   airJumpModAdd: 0.25
   timeToSlow: 0.5

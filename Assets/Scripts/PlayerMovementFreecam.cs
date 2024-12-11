@@ -15,10 +15,15 @@ public class PlayerMovementFreecam : MonoBehaviour
     public float maxSpeed = 12;
     public float gravityForce = 0.3f;
     public float rotationSpeed = 16f;
+    public float groundPoundVelocity = 100f;
+    private bool groundPounding = false;
+    private float timeSinceGroundPound;
 
     [Header("Jumping")]
     public float jumpForce = 8f;
     public int maxAirJumps = 0;
+    public float highJumpModifier = 1.25f;
+    public float highJumpWindow = 0.2f;
 
     [System.NonSerialized]
     public int airJumps;
@@ -52,6 +57,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 		static public int Midair = 2;
 		static public int Kick = 3;
 		static public int DoubleJump = 4;
+        static public int GroundPound = 5;
 	}
 
     // Start is called before the first frame update
@@ -74,7 +80,14 @@ public class PlayerMovementFreecam : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ySpeed -= gravityForce * Time.deltaTime;
+        if (Input.GetKeyDown(KeyCode.LeftControl)) {
+            ySpeed = -groundPoundVelocity;
+            groundPounding = true;
+        }
+
+        if(!groundPounding) {
+            ySpeed -= gravityForce * Time.deltaTime;
+        }
 
         if(Input.GetKeyDown(KeyCode.Space))
         {
@@ -108,12 +121,19 @@ public class PlayerMovementFreecam : MonoBehaviour
 
     void FixedUpdate()
     {
+        timeSinceGroundPound += Time.deltaTime;
+
         if(characterController.isGrounded)
         {
             ySpeed = 0;
             airJumps = maxAirJumps;
             midairTime = 0f;
             hasJumped = false;
+
+            if(groundPounding) {
+                groundPounding = false;
+                timeSinceGroundPound = 0;
+            }
 
             if(airSpeedMod > baseSpeedMod) {
                 float extraAirSpeed = airSpeedMod - baseSpeedMod;
@@ -144,9 +164,16 @@ public class PlayerMovementFreecam : MonoBehaviour
             if(touchedGroundLastFrame) {
                 airSpeedMod += airJumpModAdd;
             }
-            animationController.SetInteger("animationState", AnimationState.Midair);
+            
             animationController.SetFloat("JumpVelocityBlend", velocity.y);
             midairTime += Time.deltaTime;
+
+            if(!groundPounding) {
+                animationController.SetInteger("animationState", AnimationState.Midair);
+            } else {
+                animationController.SetInteger("animationState", AnimationState.GroundPound);
+            }
+
             touchedGroundLastFrame = false;
         }
 
@@ -161,10 +188,15 @@ public class PlayerMovementFreecam : MonoBehaviour
             hasJumped = true;
         }
 
+        Debug.Log(animationController.GetInteger("animationState"));
     }
 
     void ModifySpeed()
     {
+        if (groundPounding) {
+            velocity = new (0, velocity.y, 0);
+        }
+
         Vector3 flatVelocity = new Vector3(velocity.x, 0, velocity.z);
 		float localMaxSpeed = maxSpeed;
 
@@ -180,12 +212,16 @@ public class PlayerMovementFreecam : MonoBehaviour
 
     void Jump()
     {
-        ySpeed = jumpForce;
+        if(timeSinceGroundPound < highJumpWindow) {
+            ySpeed = jumpForce * highJumpModifier;
+        } else {
+            ySpeed = jumpForce;
+        }
     }
 
     void AirJump()
     {
-        if(airJumps > 0){
+        if(airJumps > 0 && !groundPounding){
 			animationController.SetInteger("animationState", AnimationState.DoubleJump);
             ySpeed = jumpForce;
             airJumps -= 1;
