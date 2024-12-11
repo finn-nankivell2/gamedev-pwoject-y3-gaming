@@ -19,7 +19,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     [Header("Jumping")]
     public float jumpForce = 8f;
     public int maxAirJumps = 0;
-    
+
     [System.NonSerialized]
     public int airJumps;
     public float baseSpeedMod = 1f;
@@ -102,10 +102,8 @@ public class PlayerMovementFreecam : MonoBehaviour
 		}
 
 		if (Input.GetKeyDown(KeyCode.R)) {
-			transform.position = startPos;
-			Physics.SyncTransforms();
+			GameManager.Instance.RestartLevelFresh();
 		}
-
     }
 
     void FixedUpdate()

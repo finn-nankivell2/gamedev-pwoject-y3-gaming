@@ -65,10 +65,15 @@ public class GameManager : MonoBehaviour
         levelEndState = true;
     }
 
+	public void RestartLevelFresh() {
+        string currentLevel = SceneManager.GetActiveScene().name;
+		SceneManager.LoadScene(currentLevel);
+	}
+
     public IEnumerator RespawnPlayerCoroutine(Collider player)
     {
         animator.Play("SlideIn");
-        
+
         yield return new WaitForSeconds(0.8f);
 
         PlayerMovementFreecam playerMovement = player.GetComponent<PlayerMovementFreecam>();
