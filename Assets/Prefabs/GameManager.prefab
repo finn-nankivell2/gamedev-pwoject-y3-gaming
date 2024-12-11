@@ -349,6 +349,9 @@ MonoBehaviour:
   speedrunTimer: {fileID: 373445557506147805}
   canvas: {fileID: 2517205330675954496}
   particleManager: {fileID: 4941607105447664152}
+  levels:
+  - 0-TutorialLevel
+  - 1-FourCorners
 --- !u!1 &3722560009595122244
 GameObject:
   m_ObjectHideFlags: 0
@@ -738,10 +741,6 @@ PrefabInstance:
     - target: {fileID: 1773620019247942897, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_FollowOffset.z
       value: -5
-      objectReference: {fileID: 0}
-    - target: {fileID: 3748608547844043478, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
-      propertyPath: maxAirJumps
-      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 7435575175161487229, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_FollowOffset.y

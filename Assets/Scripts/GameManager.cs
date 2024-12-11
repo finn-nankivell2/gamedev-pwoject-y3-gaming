@@ -1,9 +1,12 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using Cinemachine;
 using Unity.VisualScripting;
 using UnityEditor.Purchasing;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,15 +17,16 @@ public class GameManager : MonoBehaviour
     public CinemachineFreeLook freeLookCamera;
     public GameObject player;
     public SpeedrunTimer speedrunTimer;
+    public GameObject canvas;
+    public ParticleManager particleManager;
+    public List<string> levels;
+
 
     [System.NonSerialized]
     public PlayerMovementFreecam playerScript;
-
-    public GameObject canvas;
-
     private Animator animator;
+    private bool levelEndState = false;
 
-    public ParticleManager particleManager;
 
     // Start is called before the first frame update
     void Awake()
@@ -41,7 +45,9 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (levelEndState && Input.GetKeyDown(KeyCode.Mouse0)) {
+            HandleLoadingNextLevel();
+        }
     }
 
     public void SetSpawnPosition(Transform newPosition)
@@ -54,9 +60,9 @@ public class GameManager : MonoBehaviour
         StartCoroutine(RespawnPlayerCoroutine(player));
     }
 
-    public void LoadNextLevel() {
+    public void SetLevelEndState() {
         speedrunTimer.StopTimer();
-        Debug.Log("time to load the next scene!");
+        levelEndState = true;
     }
 
     public IEnumerator RespawnPlayerCoroutine(Collider player)
@@ -74,5 +80,18 @@ public class GameManager : MonoBehaviour
         Physics.SyncTransforms();
 
         animator.Play("SlideOut");
+    }
+
+    private void HandleLoadingNextLevel()
+    {
+        string currentLevel = SceneManager.GetActiveScene().name;
+        int index = levels.IndexOf(currentLevel);
+        if(index != levels.Count-1) {
+            SceneManager.LoadScene(levels[index+1]);
+        } else{
+            // this should be handled
+            Debug.Log("no more levels!");
+            SceneManager.LoadScene("BaseLevel");
+        }
     }
 }

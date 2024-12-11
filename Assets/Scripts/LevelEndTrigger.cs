@@ -8,7 +8,7 @@ public class LevelEndTrigger : MonoBehaviour
     {
         if(other.tag == "Player")
         {
-            GameManager.Instance.LoadNextLevel();
+            GameManager.Instance.SetLevelEndState();
         }
     }
 }
