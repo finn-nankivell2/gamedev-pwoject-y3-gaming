@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public GameObject sceneTransition;
     public CinemachineFreeLook freeLookCamera;
     public GameObject player;
+    public SpeedrunTimer speedrunTimer;
 
     [System.NonSerialized]
     public PlayerMovementFreecam playerScript;
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
     }
 
     public void LoadNextLevel() {
+        speedrunTimer.StopTimer();
         Debug.Log("time to load the next scene!");
     }
 
