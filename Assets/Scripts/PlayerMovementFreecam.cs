@@ -49,6 +49,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 
     [Header("Animation")]
     public Animator animationController;
+    public Animator outlineAnimationController;
     public float kickAnimationSlowdownRate = 0.25f;
 
 	private static class AnimationState {
@@ -145,15 +146,18 @@ public class PlayerMovementFreecam : MonoBehaviour
 
             // 0: Idle
 			animationController.SetInteger("animationState", AnimationState.Idle);
+			outlineAnimationController.SetInteger("animationState", AnimationState.Idle);
 
             if(InputDirection().magnitude > 0f){
                 // 1: Running
     			animationController.SetInteger("animationState", AnimationState.Run);
+    			outlineAnimationController.SetInteger("animationState", AnimationState.Run);
             }
 
 			// 3: Kick
 			if (Input.GetKey(KeyCode.F)) {
 				animationController.SetInteger("animationState", AnimationState.Kick);
+				outlineAnimationController.SetInteger("animationState", AnimationState.Kick);
 			}
 
             touchedGroundLastFrame = true;
@@ -164,14 +168,17 @@ public class PlayerMovementFreecam : MonoBehaviour
             if(touchedGroundLastFrame) {
                 airSpeedMod += airJumpModAdd;
             }
-            
+
             animationController.SetFloat("JumpVelocityBlend", velocity.y);
+            outlineAnimationController.SetFloat("JumpVelocityBlend", velocity.y);
             midairTime += Time.deltaTime;
 
             if(!groundPounding) {
                 animationController.SetInteger("animationState", AnimationState.Midair);
+                outlineAnimationController.SetInteger("animationState", AnimationState.Midair);
             } else {
                 animationController.SetInteger("animationState", AnimationState.GroundPound);
+                outlineAnimationController.SetInteger("animationState", AnimationState.GroundPound);
             }
 
             touchedGroundLastFrame = false;
@@ -223,6 +230,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     {
         if(airJumps > 0 && !groundPounding){
 			animationController.SetInteger("animationState", AnimationState.DoubleJump);
+			outlineAnimationController.SetInteger("animationState", AnimationState.DoubleJump);
             ySpeed = jumpForce;
             airJumps -= 1;
 
