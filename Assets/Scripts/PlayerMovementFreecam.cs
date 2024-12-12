@@ -194,8 +194,6 @@ public class PlayerMovementFreecam : MonoBehaviour
             jumpStorage = false;
             hasJumped = true;
         }
-
-        Debug.Log(animationController.GetInteger("animationState"));
     }
 
     void ModifySpeed()
