@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using Cinemachine;
+using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -14,6 +15,7 @@ public class GameManager : MonoBehaviour
     public CinemachineFreeLook freeLookCamera;
     public GameObject player;
     public SpeedrunTimer speedrunTimer;
+    public GameObject levelFinishText;
     public GameObject canvas;
     public ParticleManager particleManager;
     public List<string> levels;
@@ -37,6 +39,8 @@ public class GameManager : MonoBehaviour
         animator = sceneTransition.GetComponent<Animator>();
         playerScript = player.GetComponent<PlayerMovementFreecam>();
         Instance = this;
+
+        levelFinishText.SetActive(false);
     }
 
     // Update is called once per frame
@@ -59,6 +63,9 @@ public class GameManager : MonoBehaviour
 
     public void SetLevelEndState() {
         speedrunTimer.StopTimer();
+        levelFinishText.SetActive(true);
+        TMP_Text text = speedrunTimer.GetComponent<TMP_Text>();
+        text.color = new Color(0, 255, 0);
         levelEndState = true;
     }
 
