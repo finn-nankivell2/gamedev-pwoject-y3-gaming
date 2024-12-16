@@ -21,8 +21,7 @@ public class BatteryPickup : MonoBehaviour
             playerMovement.AddJump();
             Destroy(gameObject);
             GameManager.Instance.particleManager.Play("battery", transform.position);
-            GameManager.Instance.audioManager.Play("battery", transform.position);
+            GameManager.Instance.audioManager.Play("battery");
         }
-        
     }
 }
