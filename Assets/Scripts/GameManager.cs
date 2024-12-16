@@ -75,7 +75,7 @@ public class GameManager : MonoBehaviour
         levelEndState = true;
 
         Instantiate(endLevelPlayer, player.transform.position, player.transform.rotation);
-        Debug.Log(endLevelPlayer.transform.position);
+        particleManager.Play("endlevel", player.transform.position, Quaternion.AngleAxis(90, Vector3.left));
         player.SetActive(false);
     }
 
