@@ -75,9 +75,6 @@ public class GameManager : MonoBehaviour
         levelEndState = true;
 
         Instantiate(endLevelPlayer, player.transform.position, player.transform.rotation);
-        // Debug.Log(player.transform.position);
-        // Physics.SyncTransforms();
-        // endLevelPlayer.transform.position = player.transform.position;
         Debug.Log(endLevelPlayer.transform.position);
         player.SetActive(false);
     }

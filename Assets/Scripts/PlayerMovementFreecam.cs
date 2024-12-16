@@ -132,6 +132,7 @@ public class PlayerMovementFreecam : MonoBehaviour
             if(groundPounding) {
                 groundPounding = false;
                 timeSinceGroundPound = 0;
+                GameManager.Instance.particleManager.Play("groundpound", particleOrigin.position); 
             }
 
             if(airSpeedMod > baseSpeedMod) {
