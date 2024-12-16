@@ -20,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject canvas;
     public ParticleManager particleManager;
     public List<string> levels;
+    public AudioManager audioManager;
     public GameObject endLevelPlayer;
 
 

@@ -489,6 +489,7 @@ MonoBehaviour:
   levels:
   - 0-TutorialLevel
   - 1-FourCorners
+  audioManager: {fileID: 823606360839097789}
   endLevelPlayer: {fileID: 3181192024155232842, guid: 2102bbe9c240541e4b290d16f24edeff, type: 3}
 --- !u!1 &3722560009595122244
 GameObject:
@@ -834,15 +835,31 @@ MonoBehaviour:
   m_GameObject: {fileID: 8017234514682581372}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b9b0e4fa74d505ee5b577860c89496e5, type: 3}
+  m_Script: {fileID: 11500000, guid: 9feb89d08cf396382822f79f43a3118a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sounds:
-  - name: battery_collect
-    clip: {fileID: 8300000, guid: 10d71020f9e3016d8b5795d77cd6aba3, type: 3}
-    volume: 1
-    pitch: 1
-    source: {fileID: 0}
+  volume: 0.5
+  soundEffects:
+  - key: battery
+    soundEffect: {fileID: 8300000, guid: 10d71020f9e3016d8b5795d77cd6aba3, type: 3}
+  - key: 
+    soundEffect: {fileID: 0}
+  - key: 
+    soundEffect: {fileID: 0}
+  - key: 
+    soundEffect: {fileID: 0}
+  - key: 
+    soundEffect: {fileID: 0}
+  - key: 
+    soundEffect: {fileID: 0}
+  - key: 
+    soundEffect: {fileID: 0}
+  - key: 
+    soundEffect: {fileID: 0}
+  - key: 
+    soundEffect: {fileID: 0}
+  - key: 
+    soundEffect: {fileID: 0}
 --- !u!1 &8564744101174168503
 GameObject:
   m_ObjectHideFlags: 0
