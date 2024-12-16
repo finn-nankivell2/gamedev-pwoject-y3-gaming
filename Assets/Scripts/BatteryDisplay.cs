@@ -23,7 +23,6 @@ public class BatteryDisplay : MonoBehaviour
     public GameObject batteryPrefab;
     public float batteryOffset = 100;
     private int uiMaxAirJumps = 0;
-    private int uiCurrentAirJumps = 0;
     private PlayerMovementFreecam playerScript;
 
     // Start is called before the first frame update
