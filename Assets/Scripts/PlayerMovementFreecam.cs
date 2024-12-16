@@ -115,9 +115,7 @@ public class PlayerMovementFreecam : MonoBehaviour
             transform.forward = Vector3.RotateTowards(transform.forward, norm, rotationSpeed * Time.deltaTime, 0.0f);
 		}
 
-		if (Input.GetKeyDown(KeyCode.R)) {
-			GameManager.Instance.RestartLevelFresh();
-		}
+		
     }
 
     void FixedUpdate()

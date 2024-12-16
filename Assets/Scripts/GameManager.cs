@@ -5,6 +5,7 @@ using Cinemachine;
 using TMPro;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
@@ -19,6 +20,7 @@ public class GameManager : MonoBehaviour
     public GameObject canvas;
     public ParticleManager particleManager;
     public List<string> levels;
+    public GameObject endLevelPlayer;
 
 
     [System.NonSerialized]
@@ -49,6 +51,10 @@ public class GameManager : MonoBehaviour
         if (levelEndState && Input.GetKeyDown(KeyCode.Mouse0)) {
             HandleLoadingNextLevel();
         }
+
+        if (Input.GetKeyDown(KeyCode.R)) {
+			RestartLevelFresh();
+		}
     }
 
     public void SetSpawnPosition(Transform newPosition)
@@ -67,6 +73,13 @@ public class GameManager : MonoBehaviour
         TMP_Text text = speedrunTimer.GetComponent<TMP_Text>();
         text.color = new Color(0, 255, 0);
         levelEndState = true;
+
+        Instantiate(endLevelPlayer, player.transform.position, player.transform.rotation);
+        // Debug.Log(player.transform.position);
+        // Physics.SyncTransforms();
+        // endLevelPlayer.transform.position = player.transform.position;
+        Debug.Log(endLevelPlayer.transform.position);
+        player.SetActive(false);
     }
 
 	public void RestartLevelFresh() {

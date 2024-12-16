@@ -481,7 +481,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4267532064068529759}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000026174481, y: 0.4781655, z: -0.000000014250444, w: 0.87826973}
+  m_LocalRotation: {x: -0, y: 0.47816545, z: -0, w: 0.8782698}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -562,8 +562,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4817490030511932202}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.000000023045096, y: 0.47816566, z: 0.000000012546683, w: 0.87826973}
-  m_LocalPosition: {x: -2.499582, y: 2.87, z: -8.513578}
+  m_LocalRotation: {x: 0.104218386, y: 0, z: 0, w: 0.99455446}
+  m_LocalPosition: {x: 16.79, y: -8.0128565, z: 2.9200006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5517,7 +5517,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6967510106119354266}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000026174481, y: 0.4781655, z: -0.000000014250444, w: 0.87826973}
+  m_LocalRotation: {x: -0, y: 0.47816545, z: -0, w: 0.8782698}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -5741,6 +5741,7 @@ MonoBehaviour:
   particleOrigin: {fileID: 2465409738508164139}
   residualJumpParticles: {fileID: 5870370805602466769}
   animationController: {fileID: 1697370245735699509}
+  outlineAnimationController: {fileID: 0}
   kickAnimationSlowdownRate: 0.25
 --- !u!95 &1697370245735699509
 Animator:
@@ -5788,7 +5789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8832645446190525744}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.000000026174481, y: 0.4781655, z: -0.000000014250444, w: 0.87826973}
+  m_LocalRotation: {x: -0, y: 0.47816545, z: -0, w: 0.8782698}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
