@@ -52,6 +52,9 @@ public class PlayerMovementFreecam : MonoBehaviour
     public Animator outlineAnimationController;
     public float kickAnimationSlowdownRate = 0.25f;
 
+    [Header("Audio")]
+	public AudioSource footstepsAudio;
+
 	private static class AnimationState {
 		static public int Idle = 0;
 		static public int Run = 1;
@@ -115,7 +118,7 @@ public class PlayerMovementFreecam : MonoBehaviour
             transform.forward = Vector3.RotateTowards(transform.forward, norm, rotationSpeed * Time.deltaTime, 0.0f);
 		}
 
-		
+
     }
 
     void FixedUpdate()
@@ -132,7 +135,7 @@ public class PlayerMovementFreecam : MonoBehaviour
             if(groundPounding) {
                 groundPounding = false;
                 timeSinceGroundPound = 0;
-                GameManager.Instance.particleManager.Play("groundpound", particleOrigin.position); 
+                GameManager.Instance.particleManager.Play("groundpound", particleOrigin.position);
             }
 
             if(airSpeedMod > baseSpeedMod) {
@@ -151,6 +154,7 @@ public class PlayerMovementFreecam : MonoBehaviour
                 // 1: Running
     			animationController.SetInteger("animationState", AnimationState.Run);
     			outlineAnimationController.SetInteger("animationState", AnimationState.Run);
+
             }
 
 			// 3: Kick
@@ -182,6 +186,16 @@ public class PlayerMovementFreecam : MonoBehaviour
 
             touchedGroundLastFrame = false;
         }
+
+		if (characterController.isGrounded && InputDirection().magnitude > 0f) {
+			if (!footstepsAudio.isPlaying) {
+				footstepsAudio.Play();
+			}
+		}
+
+		else if (footstepsAudio.isPlaying) {
+			footstepsAudio.Stop();
+		}
 
         if(jumpStorage){
             if(characterController.isGrounded || (midairTime < coyoteSeconds && !hasJumped)){

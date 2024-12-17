@@ -31,7 +31,6 @@ public class GameManager : MonoBehaviour
     private bool levelEndState = false;
     private bool respawning;
 
-
     // Start is called before the first frame update
     void Awake()
     {
@@ -84,6 +83,7 @@ public class GameManager : MonoBehaviour
         TMP_Text text = speedrunTimer.GetComponent<TMP_Text>();
         text.color = new Color(0, 255, 0);
         levelEndState = true;
+		audioManager.PlaySpatial("levelend", player.transform.position);
 
         Instantiate(endLevelPlayer, player.transform.position, player.transform.rotation);
         particleManager.Play("endlevel", player.transform.position, Quaternion.AngleAxis(90, Vector3.left));
@@ -99,6 +99,7 @@ public class GameManager : MonoBehaviour
     {
         respawning = true;
         animator.Play("SlideIn");
+        audioManager.Play("death");
 
         yield return new WaitForSeconds(0.8f);
 
