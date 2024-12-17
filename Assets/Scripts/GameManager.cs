@@ -22,12 +22,14 @@ public class GameManager : MonoBehaviour
     public List<string> levels;
     public AudioManager audioManager;
     public GameObject endLevelPlayer;
-
+    public SphereCollider respawnCameraConfiner;
+    private Vector3 confinerLastPosition;
 
     [System.NonSerialized]
     public PlayerMovementFreecam playerScript;
     private Animator animator;
     private bool levelEndState = false;
+    private bool respawning;
 
 
     // Start is called before the first frame update
@@ -56,6 +58,14 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) {
 			RestartLevelFresh();
 		}
+    }
+
+    void LateUpdate()
+    {
+        if(respawning){
+            respawnCameraConfiner.transform.position = new Vector3 (confinerLastPosition.x, confinerLastPosition.y, confinerLastPosition.z);
+        }
+        confinerLastPosition = respawnCameraConfiner.transform.position;
     }
 
     public void SetSpawnPosition(Transform newPosition)
@@ -87,6 +97,7 @@ public class GameManager : MonoBehaviour
 
     public IEnumerator RespawnPlayerCoroutine(Collider player)
     {
+        respawning = true;
         animator.Play("SlideIn");
 
         yield return new WaitForSeconds(0.8f);
@@ -100,6 +111,8 @@ public class GameManager : MonoBehaviour
         Physics.SyncTransforms();
 
         animator.Play("SlideOut");
+        respawning = false;
+        respawnCameraConfiner.transform.localPosition = Vector3.zero;
     }
 
     private void HandleLoadingNextLevel()
