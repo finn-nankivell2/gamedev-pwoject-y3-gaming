@@ -122,9 +122,7 @@ public class GameManager : MonoBehaviour
         if(index != levels.Count-1) {
             SceneManager.LoadScene(levels[index+1]);
         } else{
-            // this should be handled
-            Debug.Log("no more levels!");
-            SceneManager.LoadScene("BaseLevel");
+            SceneManager.LoadScene("MainMenu");
         }
     }
 }
