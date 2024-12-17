@@ -247,6 +247,7 @@ public class PlayerMovementFreecam : MonoBehaviour
 
             // Instantiate(airJumpParticles, transform.position, particleOrigin.rotation);
             GameManager.Instance.particleManager.Play("jump", transform.position, particleOrigin.rotation);
+            GameManager.Instance.audioManager.Play("whoosh");
             residualJumpParticles.Play();
             airSpeedMod += airJumpModAdd;
         }
