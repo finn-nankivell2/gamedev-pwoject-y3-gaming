@@ -489,6 +489,7 @@ MonoBehaviour:
   levels:
   - 0-TutorialLevel
   - 1-FourCorners
+  - 2-Climb
   audioManager: {fileID: 823606360839097789}
   endLevelPlayer: {fileID: 3181192024155232842, guid: 2102bbe9c240541e4b290d16f24edeff, type: 3}
   respawnCameraConfiner: {fileID: 2140868955405628366}

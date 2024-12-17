@@ -17,7 +17,7 @@ public class PlayerMovementFreecam : MonoBehaviour
     public float rotationSpeed = 16f;
     public float groundPoundVelocity = 100f;
     private bool groundPounding = false;
-    private float timeSinceGroundPound;
+    private float timeSinceGroundPound = 1f;
 
     [Header("Jumping")]
     public float jumpForce = 8f;
