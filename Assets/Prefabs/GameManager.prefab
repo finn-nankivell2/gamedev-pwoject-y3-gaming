@@ -1049,9 +1049,9 @@ MonoBehaviour:
   - 1-FourCorners
   - 2-Climb
   aceTimes:
-  - 10.322
-  - 11.928
-  - 18.354
+  - 10.047
+  - 11.377
+  - 17.385
   audioManager: {fileID: 823606360839097789}
   endLevelPlayer: {fileID: 3181192024155232842, guid: 2102bbe9c240541e4b290d16f24edeff, type: 3}
   respawnCameraConfiner: {fileID: 2140868955405628366}
@@ -3426,31 +3426,31 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8575705399757459104, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.4
+      value: -15.34
       objectReference: {fileID: 0}
     - target: {fileID: 8575705399757459104, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.07857156
+      value: 8.661428
       objectReference: {fileID: 0}
     - target: {fileID: 8575705399757459104, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -1.888
+      value: -8.518
       objectReference: {fileID: 0}
     - target: {fileID: 8575705399757459104, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 0.96812516
+      value: 0.9681252
       objectReference: {fileID: 0}
     - target: {fileID: 8575705399757459104, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0.25046685
+      value: 0.2504668
       objectReference: {fileID: 0}
     - target: {fileID: 8575705399757459104, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0.000000020181977
       objectReference: {fileID: 0}
     - target: {fileID: 8575705399757459104, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: 0.0000000052213442
       objectReference: {fileID: 0}
     - target: {fileID: 8575705399757459104, guid: 47bb422fc2c23088fac87fe5561ca0e2, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
