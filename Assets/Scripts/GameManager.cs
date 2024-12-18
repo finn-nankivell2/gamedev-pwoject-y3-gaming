@@ -96,12 +96,21 @@ public class GameManager : MonoBehaviour
         int index = levels.IndexOf(currentLevel);
         float aceTime = aceTimes[index];
         TMP_Text text = speedrunTimer.GetComponent<TMP_Text>();
-        if(speedrunTimer.GetTime() < aceTime) {
+        float time = speedrunTimer.GetTime();
+        if(time < aceTime) {
             text.color = new Color(1, 100f/255, 1);
             aceTimeIndicator.SetActive(true);
         } else {
             text.color = new Color(0, 1, 0);
         }
+
+        string savedTimeKey = "Level" + (index+1) + "Time";
+        float savedTime = PlayerPrefs.GetFloat(savedTimeKey, 999999);
+        if(time < savedTime) {
+            PlayerPrefs.SetFloat(savedTimeKey, time);
+        }
+
+
         levelEndState = true;
 
 

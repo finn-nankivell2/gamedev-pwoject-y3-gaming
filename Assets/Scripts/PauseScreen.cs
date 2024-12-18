@@ -19,11 +19,6 @@ public class PauseScreen : MonoBehaviour
         }
     }
 
-    public void Clicked()
-    {
-        Debug.Log("ahh! ahhhh!!! i'm Clicked");
-    }
-
     public void ResumeButton() 
     {
         Cursor.lockState = CursorLockMode.Locked;
