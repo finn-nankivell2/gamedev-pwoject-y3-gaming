@@ -23,13 +23,14 @@ public class GameManager : MonoBehaviour
     public AudioManager audioManager;
     public GameObject endLevelPlayer;
     public SphereCollider respawnCameraConfiner;
-    private Vector3 confinerLastPosition;
+    public GameObject pauseMenu;
 
     [System.NonSerialized]
     public PlayerMovementFreecam playerScript;
     private Animator animator;
     private bool levelEndState = false;
     private bool respawning;
+    private Vector3 confinerLastPosition;
 
     // Start is called before the first frame update
     void Awake()
@@ -44,7 +45,11 @@ public class GameManager : MonoBehaviour
         playerScript = player.GetComponent<PlayerMovementFreecam>();
         Instance = this;
 
+        pauseMenu.SetActive(false);
         levelFinishText.SetActive(false);
+        UnityEngine.Cursor.lockState = CursorLockMode.Locked;
+		UnityEngine.Cursor.visible = false;
+        Time.timeScale = 1;
     }
 
     // Update is called once per frame
@@ -57,6 +62,10 @@ public class GameManager : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.R)) {
 			RestartLevelFresh();
 		}
+
+        if (!levelEndState && Input.GetKeyDown(KeyCode.Escape)) {
+            Pause();
+        }
     }
 
     void LateUpdate()
@@ -125,5 +134,13 @@ public class GameManager : MonoBehaviour
         } else{
             SceneManager.LoadScene("MainMenu");
         }
+    }
+
+    private void Pause() 
+    {
+        pauseMenu.SetActive(true);
+        UnityEngine.Cursor.lockState = CursorLockMode.None;
+		UnityEngine.Cursor.visible = true;
+        Time.timeScale = 0;
     }
 }
