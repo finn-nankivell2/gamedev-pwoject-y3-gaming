@@ -24,7 +24,7 @@ public class SpeedrunTimer : MonoBehaviour
             _currentTime += Time.deltaTime;
         }
 
-        _text.text = GetTime();
+        _text.text = GetTimeFormatted();
     }
 
     public void StartTimer()
@@ -37,9 +37,14 @@ public class SpeedrunTimer : MonoBehaviour
         _timerActive = false;
     }
 
-    public string GetTime()
+    public string GetTimeFormatted()
     {
         TimeSpan time = TimeSpan.FromSeconds(_currentTime);
         return time.Minutes.ToString() + ":" + time.Seconds.ToString("D2") + ":" + time.Milliseconds.ToString("D3");
+    }
+
+    public float GetTime()
+    {
+        return _currentTime;
     }
 }

@@ -20,10 +20,12 @@ public class GameManager : MonoBehaviour
     public GameObject canvas;
     public ParticleManager particleManager;
     public List<string> levels;
+    public List<float> aceTimes;
     public AudioManager audioManager;
     public GameObject endLevelPlayer;
     public SphereCollider respawnCameraConfiner;
     public GameObject pauseMenu;
+    public GameObject aceTimeIndicator;
 
     [System.NonSerialized]
     public PlayerMovementFreecam playerScript;
@@ -89,9 +91,20 @@ public class GameManager : MonoBehaviour
     public void SetLevelEndState() {
         speedrunTimer.StopTimer();
         levelFinishText.SetActive(true);
+
+        string currentLevel = SceneManager.GetActiveScene().name;
+        int index = levels.IndexOf(currentLevel);
+        float aceTime = aceTimes[index];
         TMP_Text text = speedrunTimer.GetComponent<TMP_Text>();
-        text.color = new Color(0, 255, 0);
+        if(speedrunTimer.GetTime() < aceTime) {
+            text.color = new Color(1, 100f/255, 1);
+            aceTimeIndicator.SetActive(true);
+        } else {
+            text.color = new Color(0, 1, 0);
+        }
         levelEndState = true;
+
+
 		audioManager.PlaySpatial("levelend", player.transform.position);
 
         Instantiate(endLevelPlayer, player.transform.position, player.transform.rotation);

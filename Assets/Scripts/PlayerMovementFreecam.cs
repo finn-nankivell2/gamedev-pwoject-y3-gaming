@@ -136,6 +136,7 @@ public class PlayerMovementFreecam : MonoBehaviour
                 groundPounding = false;
                 timeSinceGroundPound = 0;
                 GameManager.Instance.particleManager.Play("groundpound", particleOrigin.position);
+                GameManager.Instance.audioManager.Play("groundslam");
             }
 
             if(airSpeedMod > baseSpeedMod) {
