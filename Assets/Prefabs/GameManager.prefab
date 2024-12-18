@@ -844,19 +844,16 @@ MonoBehaviour:
   soundEffects:
   - key: battery
     soundEffect: {fileID: 8300000, guid: 10d71020f9e3016d8b5795d77cd6aba3, type: 3}
-    volume: 1.38
+    volume: 1.113
   - key: death
     soundEffect: {fileID: 8300000, guid: 493f16c888f906a33aa2786a9a576e90, type: 3}
-    volume: 1
+    volume: 0.81
   - key: levelend
     soundEffect: {fileID: 8300000, guid: ec1f9da2c0d05d17e9756270cf1775f7, type: 3}
-    volume: 1.5
-  - key: running
-    soundEffect: {fileID: 8300000, guid: 208bf337f58944a7b928c808a6b759f5, type: 3}
-    volume: 0.8
+    volume: 1.387
   - key: whoosh
     soundEffect: {fileID: 8300000, guid: f98049668a10b7c5f95428f8c1f3dd20, type: 3}
-    volume: 1
+    volume: 1.5
   - key: 
     soundEffect: {fileID: 0}
     volume: 0

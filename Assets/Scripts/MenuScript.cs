@@ -5,9 +5,10 @@ using UnityEngine.SceneManagement;
 
 public class MenuScript : MonoBehaviour
 {
-    public GameObject MainMenu;
-    public GameObject CreditsMenu;
-    public GameObject LevelSelect;
+    public GameObject mainMenu;
+    public GameObject optionsMenu;
+    public GameObject creditsMenu;
+    public GameObject levelSelect;
 
     // Start is called before the first frame update
     void Start()
@@ -27,22 +28,28 @@ public class MenuScript : MonoBehaviour
     public void PlayNowButton()
     {
         // load the level select menu
-        MainMenu.SetActive(false);
-        LevelSelect.SetActive(true);
+        mainMenu.SetActive(false);
+        levelSelect.SetActive(true);
+    }
+
+    public void OptionsMenu()
+    {
+        mainMenu.SetActive(false);
+        optionsMenu.SetActive(true);
     }
 
     public void CreditsButton()
     {
-        // Show Credits Menu
-        MainMenu.SetActive(false);
-        CreditsMenu.SetActive(true);
+        mainMenu.SetActive(false);
+        creditsMenu.SetActive(true);
     }
 
     public void MainMenuButton()
     {
-        MainMenu.SetActive(true);
-        CreditsMenu.SetActive(false);
-        LevelSelect.SetActive(false);
+        mainMenu.SetActive(true);
+        creditsMenu.SetActive(false);
+        levelSelect.SetActive(false);
+        optionsMenu.SetActive(false);
     }
 
     public void QuitButton()
